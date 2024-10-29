@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Alert, ImageBackground, TouchableOpacity } from 'react-native';
 
+const backgroundImage = require('./bg.gif');
 const Auth = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ const Auth = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground source={backgroundImage} style={styles.container}>
       <Text style={styles.title}>{isSignIn ? 'Sign In' : 'Sign Up'}</Text>
       <TextInput
         style={styles.input}
@@ -35,15 +36,16 @@ const Auth = () => {
         secureTextEntry
       />
       <View style={styles.buttonContainer}>
-        <Button title={isSignIn ? 'Login' : 'Register'} onPress={handleSubmit} />
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>{isSignIn ? 'Login' : 'Register'}</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
-        <Button
-          title={isSignIn ? 'Sign Up' : 'Sign In'}
-          onPress={() => setIsSignIn(!isSignIn)}
-        />
+        <TouchableOpacity style={styles.button} onPress={() => setIsSignIn(!isSignIn)}>
+          <Text style={styles.buttonText}>{isSignIn ? 'Sign Up' : 'Sign In'}</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 16,
     textAlign: 'center',
+    color: 'white',
   },
   input: {
     height: 40,
@@ -64,9 +67,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 12,
     paddingHorizontal: 8,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   buttonContainer: {
-    marginVertical: 5, // Add vertical margin between buttons
+    marginVertical: 5,
+  },
+  button: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 9, 
+    paddingHorizontal: 5, 
+    borderRadius: 5, 
+    alignItems: 'center', 
+  },
+  buttonText: {
+    color: 'white', 
+    fontSize: 16, 
   },
 });
 
