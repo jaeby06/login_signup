@@ -8,13 +8,10 @@ const Auth = () => {
 
   const handleSubmit = () => {
     if (isSignIn) {
-      // Simulate sign-in
       Alert.alert('Your in', `Email: ${email}, Password: ${password}`);
     } else {
-      // Simulate sign-up
       Alert.alert('Registered', `Email: ${email}, Password: ${password}`);
     }
-    // Clear inputs
     setEmail('');
     setPassword('');
   };
