@@ -1,22 +1,26 @@
 
-import React from 'react';
+import { useRouter } from 'expo-router';
+import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput, Button, Text } from 'react-native-paper';
 
-const Recovery = ({ onSwitch }) => (
+const Recovery = () => {
+  const router = useRouter();
+
+  return(
   <View style={styles.container}>
     <View style={styles.header}>
       <Text variant="headlineMedium" style={styles.recoveryText}>Trouble logging in?</Text>
     </View>
     <TextInput label="Phone number, username, or email" mode="outlined" style={styles.input} />
-    <Button mode="contained" style={styles.button} onPress={() => {}}>
+    <Button mode="contained" style={styles.button} onPress={() => {console.log("Recovery")}}>
       Send Recovery Link
     </Button>
-    <Button mode="text" onPress={onSwitch}>
+    <Button mode="text " onPress={() => router.replace('/')}>
       Back to Login
     </Button>
   </View>
-);
+)};
 
 const styles = StyleSheet.create({
   container: {
